@@ -17,13 +17,24 @@ main(){
     printf(ANSI_COLOR_YELLOW "%s", nome_user);
     printf(ANSI_COLOR_RESET " - CADASTRO DE PACIENTES POSITIVOS PARA COVID-19\n");
     asteriscos();
-    printf("\n ESCOLHA A SUA OPÇÃO: ");
-
+    printf("\n\n ESCOLHA A SUA OPÇÃO: ");
 
 
 
 
 }
+
+void (gravarRegistro){
+    FILE *PTRARQ;
+    char PALAVRA[20];
+    PTRARQ = fopen("ARQTXT01.txt", "a");
+    printf("\n\nEscreva uma palavra: ");
+    scanf("%s", PALAVRA);
+    fprintf(PTRARQ, "\n%s", PALAVRA);
+    fclose(PTRARQ);
+    return 0;
+}
+
 
 void asteriscos(){
     for (int i=1; i<=80; i++)

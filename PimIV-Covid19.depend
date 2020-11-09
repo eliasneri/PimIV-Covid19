@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1604945441 source:c:\users\impressão\documents\pimiv-covid19\main.c
+1604951724 source:c:\users\impressão\documents\pimiv-covid19\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<locale.h>
 
