@@ -8,23 +8,43 @@
 
 int op=0;
 char c,senha[50], nome_user[10];
-main(){
-    setlocale(LC_ALL, "Portuguese");
-    validasenha();
-    system("cls");
 
-    printf("\nSeja Bem Vindo (id): ");
-    printf(ANSI_COLOR_YELLOW "%s", nome_user);
-    printf(ANSI_COLOR_RESET " - CADASTRO DE PACIENTES POSITIVOS PARA COVID-19\n");
-    asteriscos();
-    printf("\n\n ESCOLHA A SUA OPÇÃO: ");
+main(){
+
+    setlocale(LC_ALL, "Portuguese");
+    //validasenha();
+    system("cls");
+    cabecalho();
+
+    int opcao=0;
+    do {
+
+        printf(ANSI_COLOR_YELLOW "\n\n****** MENU PRINCIPAL ****** \n" ANSI_COLOR_RESET);
+        printf("** 1 - Cadastrar Paciente ** \n");
+        printf("** 2 - Encerrar Programa  ** \n");
+        asteriscos(28);
+        espaco();
+        printf("\n\nEscolha a sua opção: ");
+        system("pause");
+
+    } while (opcao !=2);
 
 
 
 
 }
 
-void (gravarRegistro){
+void cabecalho(){
+printf("\nSeja Bem Vindo (id): ");
+printf(ANSI_COLOR_YELLOW "%s", nome_user);
+printf(ANSI_COLOR_RESET "\n");
+asteriscos(45);
+espaco();
+printf("\nCADASTRO DE PACIENTES POSITIVOS PARA COVID-19\n");
+asteriscos(45);
+}
+
+void gravarRegistro(){
     FILE *PTRARQ;
     char PALAVRA[20];
     PTRARQ = fopen("ARQTXT01.txt", "a");
@@ -36,8 +56,8 @@ void (gravarRegistro){
 }
 
 
-void asteriscos(){
-    for (int i=1; i<=80; i++)
+void asteriscos(int n){
+    for (int i=1; i<=n; i++)
         printf("*");
 }
 
