@@ -3,6 +3,7 @@
 #include<string.h>
 #include <locale.h>
 #include "functions.h"
+#include "paciente.h"
 #define ANSI_COLOR_RED      "\x1b[31m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #define ANSI_COLOR_YELLOW "\033[1;33m"
@@ -12,7 +13,6 @@ main(){
     setlocale(LC_ALL, "Portuguese");
     validasenha();
     system("cls");
-    gravarRegistro();
     cabecalho();
 
     int opcao=0;
@@ -24,9 +24,21 @@ main(){
         asteriscos(28);
         espaco();
         printf("\n\nEscolha a sua opção: ");
-        system("pause");
+        scanf("%i", &opcao);
+            if (opcao == 1){
+                system("cls");
+                cabecalho();
+                puts("Inclusão de Novo Registro!");
+                incluiRegistro();
+                system("cls");
+                cabecalho();
+            }
 
     } while (opcao !=2);
+
+    system("cls");
+    puts("ENCERRANDO O PROGRAMA!");
+    // destruir variáveis!
 
 }
 

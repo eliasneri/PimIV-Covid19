@@ -98,5 +98,4 @@ do{
 
 
 
-
 #endif // FUNCTIONS_H_INCLUDED
