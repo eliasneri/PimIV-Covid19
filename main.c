@@ -8,36 +8,16 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #define ANSI_COLOR_YELLOW "\033[1;33m"
 
-main(){
+void main(){
 
     setlocale(LC_ALL, "Portuguese");
-    validasenha();
+    //validasenha();
     system("cls");
-    cabecalho();
 
     int opcao=0;
-    do {
+    menu();
 
-        printf(ANSI_COLOR_YELLOW "\n\n****** MENU PRINCIPAL ****** \n" ANSI_COLOR_RESET);
-        printf("** 1 - Cadastrar Paciente ** \n");
-        printf("** 2 - Encerrar Programa  ** \n");
-        asteriscos(28);
-        espaco();
-        printf("\n\nEscolha a sua opção: ");
-        scanf("%i", &opcao);
-            if (opcao == 1){
-                system("cls");
-                cabecalho();
-                puts("Inclusão de Novo Registro!");
-                incluiRegistro();
-                system("cls");
-                cabecalho();
-            }
 
-    } while (opcao !=2);
-
-    system("cls");
-    puts("ENCERRANDO O PROGRAMA!");
     // destruir variáveis!
 
 }

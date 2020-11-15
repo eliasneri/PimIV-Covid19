@@ -1,0 +1,8 @@
+VALIDAR CADA CAMPO AO SER DIGITADO: 
+NOME... VALIDA NOME, SE ESTIVER OK... CHAMA O PRÓXIMO CAMPO!
+
+ENDEREÇO...VALIDA ENDEREÇO
+
+Campos CEP, Data Nascimento, CPF... 
+inserir laço para formatação enquanto estiver sendo digitado.
+

@@ -14,3 +14,16 @@
 
 1605114961 i:\unip\pim iv\repositório\pimiv\functions.h
 
+1605396630 source:c:\users\elias\desktop\repositorio\pimiv\pim iv\repositório\pimiv\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<locale.h>
+	"functions.h"
+	"paciente.h"
+
+1605402749 c:\users\elias\desktop\repositorio\pimiv\pim iv\repositório\pimiv\functions.h
+	<time.h>
+
+1605406043 c:\users\elias\desktop\repositorio\pimiv\pim iv\repositório\pimiv\paciente.h
+
