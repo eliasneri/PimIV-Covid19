@@ -1,7 +1,7 @@
 #ifndef PACIENTE_H_INCLUDED
 #define PACIENTE_H_INCLUDED
 
-typedef struct paciente{
+typedef struct Paciente{
     char nome[80];
     char cpf [13];
     char Telefone[13];
@@ -15,15 +15,14 @@ typedef struct paciente{
     char email[30];
     char dtDiag [11];
     char comorb [400];
-
-
 };
 
-
+struct Paciente NPaciente;
 
 void paciente(){
     fflush(stdin);
     system("cls");
+
     espaco();
     cabecalho();
     printf("\n\n");
@@ -37,6 +36,12 @@ void paciente(){
     printf(ANSI_COLOR_YELLOW "                                DADOS DO PACIENTE" ANSI_COLOR_RESET);
     printf("\n");
     printf("          Nome : ");
+    gets(NPaciente.nome);
+    alteraNome();
+
+
+
+
     printf("\n\n          CPF :");
     printf("          Telefone: ");
     printf("\n\n          Endereço:");
@@ -60,4 +65,21 @@ void paciente(){
     menu();
 }
 
+void alteraNome(){
+// Validação do Campo Nome!
+    for (int i=0; i<=strlen(NPaciente.nome);i++){
+            if (i==0) {
+                NPaciente.nome[i]=toupper(NPaciente.nome[i]);
+
+            } else if (NPaciente.nome[i] == ' '){
+                      NPaciente.nome[i]=NPaciente.nome[i];
+                      i++;
+                      NPaciente.nome[i]=toupper(NPaciente.nome[i]);
+            } else
+                {
+                  NPaciente.nome[i]=NPaciente.nome[i];
+                }
+
+        }
+}
 #endif // PACIENTE_H_INCLUDED
