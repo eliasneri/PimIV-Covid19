@@ -8,36 +8,31 @@ int op=0;
 char c,senha[50], nome_user[10];
 
 
-
-void asteriscos(int n, int s){
-    for (int i=1; i<=s; i++){
-        printf(" ");
-    }
+void gotoxy(int x, int y) {
+    COORD c = {x, y};
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE), c);
+    //Y é a Linha!
+}
+void asteriscos(int n){
     for (int i=1; i<=n; i++)
         printf("*");
 }
 
-void linhas(){
-    for (int j=1; j<=10; j++){
-            printf("\n");
-        }
+void tracoIgual(int quant){
+    for (int i=1; i<=quant; i++)
+        printf("=");
 }
 
-void espaco(){
-for (int i=1; i<=30; i++){
-        printf(" ");
-     }
-}
 
 void erroid(){
-linhas();
-espaco();
+//linhas();
+//espaco();
     for (int i=0; i<26; i++)
     printf("*");
 printf("\n");
-espaco();
+//espaco();
 printf(ANSI_COLOR_RED "*** ID/SENHA INCORRETA ***\n"ANSI_COLOR_RESET);
-espaco();
+//espaco();
 for (int i=0; i<26; i++)
     printf("*");
 }
@@ -45,14 +40,14 @@ for (int i=0; i<26; i++)
 int validasenha(){
 do{
 
-           linhas();
+//           linhas();
            int a=0;
            fflush(stdin);
-           espaco();
+//           espaco();
            printf("Digite o Usuário (id): ");
            gets(nome_user);
            fflush(stdin);
-           espaco();
+//           espaco();
            printf("Digite a senha: ");
            do{
                c=getch();
@@ -92,27 +87,35 @@ do{
 }
 
 void cabecalho(){
-printf("\n                    Seja Bem Vindo (id): ");
+gotoxy(10,1);
+printf("Seja Bem Vindo (id): ");
 printf(ANSI_COLOR_YELLOW "%s", nome_user);
-printf(ANSI_COLOR_RESET "\n");
-asteriscos(45,20);
-printf("\n                    CADASTRO DE PACIENTES POSITIVOS PARA COVID-19\n");
-asteriscos(45,20);
+printf(ANSI_COLOR_RESET);
+gotoxy(10,2);
+asteriscos(81);
+gotoxy(28,3);
+printf(ANSI_COLOR_RESET "CADASTRO DE PACIENTES POSITIVOS PARA COVID-19");
+gotoxy(10,4);
+asteriscos(81);
 }
+
 void menu(){
     cabecalho();
 int opcao=0;
     do {
-        printf("\n\n\n");
-            asteriscos(0,20);
-        printf(ANSI_COLOR_YELLOW "********** MENU PRINCIPAL ********** \n" ANSI_COLOR_RESET);
-            asteriscos(0,20);
-        printf("****** 1 - Cadastrar Paciente ****** \n");
-            asteriscos(0,20);
+        gotoxy(10,8);
+        asteriscos(20);
+        gotoxy(10,9);
+        printf(ANSI_COLOR_YELLOW "********** MENU PRINCIPAL **********" ANSI_COLOR_RESET);
+        gotoxy(10,10);
+        asteriscos(20);
+        gotoxy(10,11);
+        printf("****** 1 - Cadastrar Paciente ******");
+            asteriscos(20);
         printf("****** 2 - Encerrar Programa  ****** \n");
-        asteriscos(36,20);
+        asteriscos(20);
         printf("\n\n\n");
-            asteriscos(0,20);
+            asteriscos(20);
         printf(ANSI_COLOR_RED "Escolha a sua opção e (Pressione ENTER): " ANSI_COLOR_YELLOW);
         scanf("%i", &opcao);
             if (opcao == 1){
@@ -415,5 +418,133 @@ do {
 } while(c!=13);
 
 }
+
+void functionDataNascimento(char container[9]){
+
+do{
+    char c;
+    int a=0;
+    printf(ANSI_COLOR_RESET"\n\n          Data de nascimento: "ANSI_COLOR_YELLOW);
+    if (a!=11){
+        c=getch();
+        if (isprint(c) && isdigit(c)){
+            container[a]=c;
+            a++;
+            printf("%c", c);
+        } else if (c==8&&a){
+            container[a]='\0';
+            a--;
+            printf("\b \b");
+        }
+
+        if (a==2 && c!=8 || a==5 && c!=8){
+            container[a]='/';
+            a++;
+            printf("/");
+        } else if (c==8&&a){
+            container[a]='\0';
+            a--;
+            printf("\b \b");
+        }
+    } else {
+      container[a]='\0';
+      a--;
+      printf("\b \b");
+    }
+
+} while (c!=13);
+}
+
+
+int validaIdade(char container[9]){
+
+int operador =0, idade=0;
+fflush(stdin);
+struct tm *data_hora_atual;
+time_t segundos;
+time(&segundos);
+data_hora_atual = localtime(&segundos);
+
+int anoAtual = data_hora_atual->tm_year+1900;
+
+do {
+    gotoxy(10,16);
+    printf(ANSI_COLOR_RESET"Data de Nascimento: "ANSI_COLOR_YELLOW);
+
+    char c;
+    int a=0;
+    do{
+        if (a!=11){
+            c=getch();
+            if (isprint(c) && isdigit(c)){
+                container[a]=c;
+                a++;
+                printf("%c", c);
+            } else if (c==8&&a){
+                container[a]='\0';
+                a--;
+                printf("\b \b");
+            }
+
+            if (a==2 && c!=8 || a==5 && c!=8){
+                container[a]='/';
+                a++;
+                printf("/");
+            } else if (c==8&&a){
+                container[a]='\0';
+                a--;
+                printf("\b \b");
+            }
+        } else {
+          container[a]='\0';
+          a--;
+          printf("\b \b");
+        }
+
+    } while (c!=13);
+
+        // APÓS PRESSIONAR O ENTER, VERIFICA SE A DATA É VÁLIDA!!!
+
+        char dia[1], mes[1];
+
+        dia[0] = container[0];
+        dia[1] = container[1];
+        dia[2] = '\0';
+
+        int diaI;
+        diaI= atoi(dia);
+        mes[0] = container[3];
+        mes[1] = container[4];
+        mes[2] = '\0';
+
+        int mesI;
+        mesI= atoi(mes);
+
+        char pegaano[4];
+        pegaano[0] = container[6];
+        pegaano[1] = container[7];
+        pegaano[2] = container[8];
+        pegaano[3] = container[9];
+        pegaano[4] = '\0';
+        int anoI= atoi(pegaano);
+
+
+            if ((diaI >1 && diaI <=31) && (mesI>=1 && mesI<=12) && (anoAtual-anoI <=120 && anoAtual-anoI !=0)){
+                idade=anoAtual-anoI;
+                operador=30;
+             } else
+                {
+                    gotoxy(10,16);
+                    printf("data inválida                      ");
+                    operador=0;
+                    idade=0;
+                }
+} while(operador==0);
+
+return idade;
+
+}
+
+
 
 #endif // FUNCTIONS_H_INCLUDED

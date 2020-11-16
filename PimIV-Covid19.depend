@@ -27,16 +27,17 @@
 
 1605470061 c:\users\elias\desktop\repositorio\pimiv\pim iv\repositório\pimiv\paciente.h
 
-1605544693 source:c:\users\impressão\desktop\r\pimiv\main.c
+1605557621 source:c:\users\impressão\desktop\r\pimiv\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<locale.h>
+	<time.h>
+	<windows.h>
 	"functions.h"
 	"paciente.h"
 
-1605548294 c:\users\impressão\desktop\r\pimiv\functions.h
-	<time.h>
+1605559640 c:\users\impressão\desktop\r\pimiv\functions.h
 
-1605548151 c:\users\impressão\desktop\r\pimiv\paciente.h
+1605558747 c:\users\impressão\desktop\r\pimiv\paciente.h
 

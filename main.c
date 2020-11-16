@@ -1,8 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 #include <time.h>
+#include <windows.h>
 #include "functions.h"
 #include "paciente.h"
 #define ANSI_COLOR_RED      "\x1b[31m"
