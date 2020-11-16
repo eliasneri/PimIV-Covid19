@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include <locale.h>
+#include <time.h>
 #include "functions.h"
 #include "paciente.h"
 #define ANSI_COLOR_RED      "\x1b[31m"
@@ -9,7 +10,6 @@
 #define ANSI_COLOR_YELLOW "\033[1;33m"
 
 void main(){
-
     setlocale(LC_ALL, "Portuguese");
     //validasenha();
     system("cls");

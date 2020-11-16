@@ -6,3 +6,8 @@ ENDEREÇO...VALIDA ENDEREÇO
 Campos CEP, Data Nascimento, CPF... 
 inserir laço para formatação enquanto estiver sendo digitado.
 
+
+O CAMPO NÚMERO, PERTENCENTE AO ENDEREÇO DO PACIENTE, ESCOLHI
+CHAR PORQUÊ PODE SER NUMERO COMPOSTO COM LETRA, EXEMPLO
+103A
+

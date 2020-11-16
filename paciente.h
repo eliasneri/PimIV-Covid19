@@ -6,7 +6,7 @@ typedef struct Paciente{
     char cpf [13];
     char Telefone[13];
     char rua[80];
-    int numero;
+    char numero[4];
     char bairro[30];
     char cidade[30];
     char estado[2];
@@ -19,6 +19,7 @@ typedef struct Paciente{
 
 struct Paciente NPaciente;
 
+
 void paciente(){
     fflush(stdin);
     system("cls");
@@ -27,59 +28,79 @@ void paciente(){
     cabecalho();
     printf("\n\n");
     espaco();
-    printf(ANSI_COLOR_RED "Inclusão de Novo Registro!" ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_RED "    Inclusão de Novo Registro!" ANSI_COLOR_RESET);
 
     // FORMATAÇÃO DE DADOS!!!
 
-    printf("\n\n");
-    printf("          ==================================================================\n");
-    printf(ANSI_COLOR_YELLOW "                                DADOS DO PACIENTE" ANSI_COLOR_RESET);
     printf("\n");
-    printf("          Nome : ");
-    gets(NPaciente.nome);
-    alteraNome();
+    printf("          ==============================================================================\n");
+    printf(ANSI_COLOR_YELLOW "                                        DADOS DO PACIENTE" ANSI_COLOR_RESET);
+    printf("\n");
+    printf("          ==============================================================================\n");
 
+    // CAMPO NOME! PREENCHE E FORMATA!
+    printf("          Nome : "ANSI_COLOR_YELLOW);
+    NPaciente.nome;
+    functionFormataChar(NPaciente.nome,80);
 
+    // CAMPO CPF
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET"\n          CPF : "ANSI_COLOR_YELLOW);
+    functionCPF(NPaciente.cpf);
 
+    // CAMPO TELEFONE
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET" Telefone: "ANSI_COLOR_YELLOW);
+    functionTelefone(NPaciente.Telefone);
 
-    printf("\n\n          CPF :");
-    printf("          Telefone: ");
-    printf("\n\n          Endereço:");
-    printf("\n\n          Rua: ");
-    printf("          Número: ");
-    printf("\n\n          Bairro: ");
-    printf("          Cidade: ");
-    printf("          Estado: ");
-    printf("          CEP: ");
+    // CAMPO ENDEREÇO
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET"\n\n          Endereço:");
+    printf(ANSI_COLOR_RESET"\n          Rua: "ANSI_COLOR_YELLOW);
+    functionFormataChar(NPaciente.rua,80);
+
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET" | Número: "ANSI_COLOR_YELLOW);
+    functionFormataChar(NPaciente.numero,4);
+
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET"\n          Bairro: "ANSI_COLOR_YELLOW);
+    functionFormataChar(NPaciente.bairro,30);
+
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET" Cidade: "ANSI_COLOR_YELLOW);
+    functionFormataChar(NPaciente.cidade,30);
+
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET" Estado: "ANSI_COLOR_YELLOW);
+    functionFormataCharEstado(NPaciente.estado);
+
+    fflush(stdin);
+    printf(ANSI_COLOR_RESET" CEP: "ANSI_COLOR_YELLOW);
+    functionFormataCep(NPaciente.cep);
+
+    // CAMPO DATA DE NASCIMENTO E VALIDAÇÃO DA DATA!!!
     printf("\n\n          Data de nascimento: ");
+    fflush(stdin);
+
     printf("          E-mail: ");
     printf("\n\n          Data do diagnóstico: ");
     printf("\n\n          Comorbidades (s/n)? Quais: ");
-    printf("\n\n          ==================================================================\n");
+    printf("\n\n          ==============================================================================\n");
     printf("\n");
     printf("                                 Gravar Registro? (s/n) ");
 
     printf("\n");
     system("pause");
     system("cls");
+
+    printf("%s", NPaciente);
+    system("pause");
     menu();
 }
 
-void alteraNome(){
-// Validação do Campo Nome!
-    for (int i=0; i<=strlen(NPaciente.nome);i++){
-            if (i==0) {
-                NPaciente.nome[i]=toupper(NPaciente.nome[i]);
 
-            } else if (NPaciente.nome[i] == ' '){
-                      NPaciente.nome[i]=NPaciente.nome[i];
-                      i++;
-                      NPaciente.nome[i]=toupper(NPaciente.nome[i]);
-            } else
-                {
-                  NPaciente.nome[i]=NPaciente.nome[i];
-                }
 
-        }
-}
+
+
 #endif // PACIENTE_H_INCLUDED
