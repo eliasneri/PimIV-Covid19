@@ -12,32 +12,21 @@
 
 void main(){
     setlocale(LC_ALL, "Portuguese");
-    //validasenha();
+
     system("cls");
-
-    int opcao=0;
     menu();
-
-
-    // destruir variáveis!
-
 }
 
 
-
-void gravarRegistro(){
-    FILE *PTRARQ;
-    char PALAVRA[20];
-    PTRARQ = fopen("ARQTXT01.txt", "a");
-    printf("\n\nEscreva uma palavra: ");
-    scanf("%s", PALAVRA);
-    fprintf(PTRARQ, "\n\n");
-    fprintf(PTRARQ, "***************************************************\n");
-    fprintf(PTRARQ, "%s\n", PALAVRA);
-    fprintf(PTRARQ, "***************************************************");
-    fclose(PTRARQ);
-    return 0;
-}
-
-
+/* FUNÇÕES E VALIDAÇÕES DO SISTEMA ESTÃO ORGANIZADAS
+/  EM FUNCTIONS.H BEM COMO TODAS AS REGRAS DE NEGÓCIO DO SISTEMA!
+/  E TODA REGRA DE NEGÓCIO
+/
+/  TODA PARTE DE CADASTRO DE PACIENTES, VERIFIQUE
+/  PACIENTE.H
+/
+/  DESENVOLVIDO POR ELIAS A. NERI EM NOVEMBRO/2020
+/  PROJETO INTEGRADO MULTIDISCIPLINAR - ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
+/  (PIM IV) - UNIP 2020 - ORIENTADOR:
+*/
 

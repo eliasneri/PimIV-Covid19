@@ -13,123 +13,234 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE), c);
     //Y é a Linha!
 }
-void asteriscos(int n){
-    for (int i=1; i<=n; i++)
-        printf("*");
-}
 
-void tracoIgual(int quant){
+void tracoDecora(int quant, char c){
     for (int i=1; i<=quant; i++)
-        printf("=");
+        printf("%c",c);
 }
 
 
 void erroid(){
-//linhas();
-//espaco();
-    for (int i=0; i<26; i++)
+system("cls");
+
+    gotoxy(30,14);
+    printf(ANSI_COLOR_RED);
+    tracoDecora(39,'*');
+    gotoxy(68,15);
     printf("*");
-printf("\n");
-//espaco();
-printf(ANSI_COLOR_RED "*** ID/SENHA INCORRETA ***\n"ANSI_COLOR_RESET);
-//espaco();
-for (int i=0; i<26; i++)
+    gotoxy(30,15);
     printf("*");
+    gotoxy(30,16);
+    tracoDecora(39,'*');
+    gotoxy(32,15);
+    printf(ANSI_COLOR_YELLOW "ID/SENHA INVÁLIDO!! ACESSO NEGADO!!" ANSI_COLOR_RESET);
+
+    gotoxy(30,20);
+system("pause");
+validasenha();
 }
 
-int validasenha(){
-do{
+void validasenha(){
+system("cls");
 
-//           linhas();
-           int a=0;
-           fflush(stdin);
-//           espaco();
-           printf("Digite o Usuário (id): ");
-           gets(nome_user);
-           fflush(stdin);
-//           espaco();
-           printf("Digite a senha: ");
+
+    do{
+
+        // MONTAGEM DA TELA DE LOGIN
+        gotoxy(30,14);
+        tracoDecora(37,'=');
+
+        gotoxy(66,15);
+        printf("=");
+        gotoxy(30,15);
+        printf("= Digite o Usuário (id): ");
+
+        gotoxy(66,16);
+        printf("=");
+        gotoxy(30,16);
+        printf("= Digite a SENHA: ");
+
+        gotoxy(30,17);
+        tracoDecora(37,'=');
+
+        // CAMPO ID!
+        int a=0;
+        fflush(stdin);
+        c='\0';
+        gotoxy(55,15);
+        printf(ANSI_COLOR_YELLOW);
            do{
-               c=getch();
-               if(isprint(c)){
+              if (a!=11){
+                 c=getch();
+                 if (isprint(c)){
+                    nome_user[a]=c;
+                    a++;
+                    printf("%c",c);
+                 } else if (c==8&&a){
+                    nome_user[a]='\0';
+                    a--;
+                    printf("\b \b");
+                 }
+
+            } else {
+                    nome_user[a]='\0';
+                    a--;
+                    printf("\b \b");
+              }
+
+           } while(c!=13);
+
+        printf(ANSI_COLOR_RED);
+        // CAMPO SENHA!
+        gotoxy(48,16);
+        c='\0';
+        fflush(stdin);
+        a=0;
+        do{
+            if(a!=11){
+                c=getch();
+                if(isprint(c)){
                     senha[a]=c;
                     a++;
                     printf("*");
-               }
-               else if(c==8&&a){
-                    senha[a]='\0';
-                    a--;
-                    printf("\b \b");
+                } else if(c==8&&a){
+                        senha[a]='\0';
+                        a--;
+                        printf("\b \b");
                     }
+            } else {
+                senha[a]='\0';
+                a--;
+                printf("\b \b");
+            }
+
            }while(c!=13);
 
+    printf(ANSI_COLOR_RESET);
+    senha[a]='\0';
+    system("cls");
+    char scorreta[]="covid19";
+    char user[]="admin";
 
-           senha[a]='\0';
-           system("cls");
-           char scorreta[]="abcd";
-           char user[]="admin";
-
-
-           if (!strcmp(senha,scorreta) && (nome_user, user)) {
-                op=1;
-                break;
+    if (!strcmp(senha,scorreta) && (nome_user, user)) {
+        op=1;
+        break;
                 }
-           else {
-                erroid();
-                printf("\n\n");
-                system("pause");
-                system("cls");
-           }
+    else {
+        erroid();
+         }
 
     } while (op==0);
-
-     return op;
 }
 
+void datahora(){
+
+  struct tm *data_hora_atual;
+  time_t segundos;
+  time(&segundos);
+  data_hora_atual = localtime(&segundos);
+  char dataHora[20];
+
+  sprintf(dataHora, "%d/%d/%d - %1.2d:%1.2d", data_hora_atual->tm_mday,
+          data_hora_atual->tm_mon+1,
+          data_hora_atual->tm_year+1900,
+          data_hora_atual->tm_hour,
+          data_hora_atual->tm_min);
+
+printf(ANSI_COLOR_YELLOW "%s" ANSI_COLOR_RESET, dataHora );
+
+}
 void cabecalho(){
 gotoxy(10,1);
-printf("Seja Bem Vindo (id): ");
+printf(ANSI_COLOR_RESET "Seja Bem Vindo (id): ");
 printf(ANSI_COLOR_YELLOW "%s", nome_user);
 printf(ANSI_COLOR_RESET);
+gotoxy(73,1);
+datahora();
 gotoxy(10,2);
-asteriscos(81);
+tracoDecora(81,'*');
 gotoxy(28,3);
 printf(ANSI_COLOR_RESET "CADASTRO DE PACIENTES POSITIVOS PARA COVID-19");
 gotoxy(10,4);
-asteriscos(81);
+tracoDecora(81,'*');
 }
 
 void menu(){
+    system("cls");
     cabecalho();
+
 int opcao=0;
-    do {
+
         gotoxy(10,8);
-        asteriscos(20);
-        gotoxy(10,9);
-        printf(ANSI_COLOR_YELLOW "********** MENU PRINCIPAL **********" ANSI_COLOR_RESET);
-        gotoxy(10,10);
-        asteriscos(20);
-        gotoxy(10,11);
-        printf("****** 1 - Cadastrar Paciente ******");
-            asteriscos(20);
-        printf("****** 2 - Encerrar Programa  ****** \n");
-        asteriscos(20);
-        printf("\n\n\n");
-            asteriscos(20);
+        tracoDecora(81,'-');
+        gotoxy(43,9);
+        printf(ANSI_COLOR_YELLOW " MENU  PRINCIPAL " ANSI_COLOR_RESET);
+        gotoxy(40,11);
+        printf(ANSI_COLOR_YELLOW"1 -");
+        printf(ANSI_COLOR_RESET" NOVO CADASTRO ");
+        gotoxy(40,12);
+        printf(ANSI_COLOR_YELLOW"2 -");
+        printf(ANSI_COLOR_RESET" ENCERRAR O SISTEMA");
+        gotoxy(10,13);
+        tracoDecora(81,'-');
+        gotoxy(30,17);
         printf(ANSI_COLOR_RED "Escolha a sua opção e (Pressione ENTER): " ANSI_COLOR_YELLOW);
-        scanf("%i", &opcao);
-            if (opcao == 1){
+
+do {
+            gotoxy(71,17);
+            printf(" ");
+            int a=0;
+            char c;
+            char buffer[0];
+            gotoxy(71,17);
+            do{
+
+              if (a!=2){
+                 c=getch();
+                 if (isprint(c) && isdigit(c)){
+                     buffer[a]=c;
+                     a++;
+                     printf("%c",c);
+                 } else if (c==8&&a){
+                    buffer[a]='/0';
+                    a--;
+                    printf("\b \b");
+                    }
+              } else {
+                    buffer[a]='/0';
+                    a--;
+                    printf("\b \b");
+              }
+            } while(c!=13);
+
+            opcao=atoi(buffer);
+
+            if (opcao==1){
                 paciente();
             }
 
-    } while (opcao !=2);
 
+} while (opcao !=2);
+
+    //ENCERRANDO O PROGRAMA!
     system("cls");
-    puts("ENCERRANDO O PROGRAMA!");
+    gotoxy(30,14);
+    printf(ANSI_COLOR_RED);
+    tracoDecora(40,'*');
+    gotoxy(69,15);
+    printf("*");
+    gotoxy(30,15);
+    printf("*");
+    gotoxy(30,16);
+    tracoDecora(40,'*');
+    gotoxy(41,15);
+    printf(ANSI_COLOR_YELLOW "PROGRAMA  ENCERRADO!!!" ANSI_COLOR_RESET);
+
+    gotoxy(30,20);
+system("pause");
 
 }
 
-// Trabalhando com Datas
 
 void Validanascimento(char dtNascimento[15]){
     struct tm *data_hora_atual;
@@ -162,7 +273,7 @@ void Validanascimento(char dtNascimento[15]){
            printf("\b \b");
         }
       }
-    }while (c!=13);
+    }while (c!=13 || c!=27);
 
 
 printf("\n");
@@ -455,7 +566,6 @@ do{
 } while (c!=13);
 }
 
-
 int validaIdade(char container[9]){
 
 int operador =0, idade=0;
@@ -545,6 +655,14 @@ return idade;
 
 }
 
+void grupoRisco(int idade){
+if (idade>=65) {
+     printf(ANSI_COLOR_YELLOW "%d ANOS!!!", idade);
+     printf(ANSI_COLOR_RED " GRUPO DE RISCO!!!!!" ANSI_COLOR_RESET);
+     }
+else
+    printf("%d Anos", idade);
+}
 
 
 #endif // FUNCTIONS_H_INCLUDED
