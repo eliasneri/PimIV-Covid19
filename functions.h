@@ -6,7 +6,7 @@
 
 int op=0;
 char c,senha[50], nome_user[10];
-
+char dataHora[20];
 
 void gotoxy(int x, int y) {
     COORD c = {x, y};
@@ -19,8 +19,27 @@ void tracoDecora(int quant, char c){
         printf("%c",c);
 }
 
+void finalizaProgram(){
 
+    system("cls");
+    gotoxy(30,14);
+    printf(ANSI_COLOR_RED);
+    tracoDecora(40,'*');
+    gotoxy(69,15);
+    printf("*");
+    gotoxy(30,15);
+    printf("*");
+    gotoxy(30,16);
+    tracoDecora(40,'*');
+    gotoxy(41,15);
+    printf(ANSI_COLOR_YELLOW "PROGRAMA  ENCERRADO!!!" ANSI_COLOR_RESET);
+
+    gotoxy(30,20);
+    exit(0);
+
+}
 void erroid(){
+
 system("cls");
 
     gotoxy(30,14);
@@ -74,9 +93,7 @@ system("cls");
                  c=getch();
                  if (c==27){
                     fflush(stdin);
-                    gotoxy(30,20);
-                    exit(0);
-
+                    finalizaProgram();
                  }
 
                  if (isprint(c)){
@@ -97,8 +114,8 @@ system("cls");
 
            } while(c!=13);
 
-        printf(ANSI_COLOR_RED);
         // CAMPO SENHA!
+        printf(ANSI_COLOR_RED);
         gotoxy(48,16);
         c='\0';
         fflush(stdin);
@@ -106,6 +123,10 @@ system("cls");
         do{
             if(a!=11){
                 c=getch();
+                if (c==27){
+                    fflush(stdin);
+                    finalizaProgram();
+                }
                 if(isprint(c)){
                     senha[a]=c;
                     a++;
@@ -139,8 +160,7 @@ system("cls");
 
     } while (op==0);
 
-    finalizaProgram();
-    return 0;
+return 0;
 }
 
 void datahora(){
@@ -149,30 +169,29 @@ void datahora(){
   time_t segundos;
   time(&segundos);
   data_hora_atual = localtime(&segundos);
-  char dataHora[20];
 
   sprintf(dataHora, "%d/%d/%d - %1.2d:%1.2d", data_hora_atual->tm_mday,
           data_hora_atual->tm_mon+1,
           data_hora_atual->tm_year+1900,
           data_hora_atual->tm_hour,
           data_hora_atual->tm_min);
-
-printf(ANSI_COLOR_YELLOW "%s" ANSI_COLOR_RESET, dataHora );
-
 }
 void cabecalho(){
+
 gotoxy(10,1);
 printf(ANSI_COLOR_RESET "Seja Bem Vindo (id): ");
 printf(ANSI_COLOR_YELLOW "%s", nome_user);
 printf(ANSI_COLOR_RESET);
 gotoxy(73,1);
 datahora();
+printf(ANSI_COLOR_YELLOW "%s" ANSI_COLOR_RESET, dataHora );
 gotoxy(10,2);
 tracoDecora(81,'*');
 gotoxy(28,3);
 printf(ANSI_COLOR_RESET "CADASTRO DE PACIENTES POSITIVOS PARA COVID-19");
 gotoxy(10,4);
 tracoDecora(81,'*');
+
 }
 
 void menu(){
@@ -240,69 +259,6 @@ do {
     //ENCERRANDO O PROGRAMA!
 }
 
-void Validanascimento(char dtNascimento[15]){
-    struct tm *data_hora_atual;
-    time_t segundos;
-    time(&segundos);
-    data_hora_atual = localtime(&segundos);
-    int a=0;
-    char c;
-
-
-  do {
-     if (a!=10){
-        c = getch();
-        if (isprint(c) && isdigit(c)){
-            dtNascimento[a]=c;
-            a++;
-            printf("%c",c);
-         } else if (c==8&&a){
-           dtNascimento[a]='\0';
-           a--;
-           printf("\b \b");
-        }
-        if (a==2 && c!=8 || a==5 && c!=8){
-            dtNascimento[a] ='/';
-            a++;
-            printf("/");
-        } else if (c==8&&a){
-            dtNascimento[a]='\0';
-            a--;
-           printf("\b \b");
-        }
-      }
-    }while (c!=13 || c!=27);
-
-
-printf("\n");
-puts(dtNascimento);
-
-char vano[4];
-char vmes[2];
-char vdia[2];
-int j=5;
-int v=0;
-
-
-        for (int i=1; i<=4; i++){
-            j++;
-            vano[i] = dtNascimento[j];
-            printf("%c", vano[i]);
-        }
-
-        for (int i=1; i<=2; i++){
-                vmes[i] = dtNascimento[2+i];
-             }
-
-        for (int i=1; i<=2; i++){
-                vdia[i] = dtNascimento[i-1];
-             }
-
-printf("\n");
-puts(vano);
-
-}
-
 void functionFormataChar(char container[80], int limite){
 int a=0;
 char c;
@@ -367,6 +323,9 @@ int a=0;
     do{
        c=getch();
         if (a!=14){
+            if (c==27){
+                menu();
+            }
             if (isprint(c) && isdigit(c)){
                 container[a]=c;
                 a++;
@@ -414,7 +373,9 @@ int a=0;
 do{
        c=getch();
         if (a!=14){
-
+            if (c==27){
+                menu();
+            }
             if (a==0){
                 container[a]='(';
                 a++;
@@ -475,6 +436,9 @@ char c;
     do{
         if (a !=3){
         c=getch();
+            if (c==27){
+                menu();
+            }
             if (isprint(c)){
                 container[a]=toupper(c);
                 a++;
@@ -501,6 +465,9 @@ int a=0;
 do {
     if (a!=10){
             c=getch();
+            if (c==27){
+                menu();
+            }
             if (isprint(c) && isdigit(c)){
                 container[a]=c;
                 a++;
@@ -515,7 +482,7 @@ do {
                 container[a]='-';
                 a++;
                 printf("-");
-            } else if (c==8&a){
+            } else if (c==8&&a){
                 container[a]='\0';
                 a--;
                 printf("\b \b");
@@ -531,42 +498,6 @@ do {
 
 }
 
-void functionDataNascimento(char container[9]){
-
-do{
-    char c;
-    int a=0;
-    printf(ANSI_COLOR_RESET"\n\n          Data de nascimento: "ANSI_COLOR_YELLOW);
-    if (a!=11){
-        c=getch();
-        if (isprint(c) && isdigit(c)){
-            container[a]=c;
-            a++;
-            printf("%c", c);
-        } else if (c==8&&a){
-            container[a]='\0';
-            a--;
-            printf("\b \b");
-        }
-
-        if (a==2 && c!=8 || a==5 && c!=8){
-            container[a]='/';
-            a++;
-            printf("/");
-        } else if (c==8&&a){
-            container[a]='\0';
-            a--;
-            printf("\b \b");
-        }
-    } else {
-      container[a]='\0';
-      a--;
-      printf("\b \b");
-    }
-
-} while (c!=13);
-}
-
 int validaIdade(char container[9]){
 
 int operador =0, idade=0;
@@ -579,9 +510,8 @@ data_hora_atual = localtime(&segundos);
 int anoAtual = data_hora_atual->tm_year+1900;
 
 do {
-    gotoxy(10,16);
+    gotoxy(10,18);
     printf(ANSI_COLOR_RESET"Data de Nascimento: "ANSI_COLOR_YELLOW);
-
     char c;
     int a=0;
     do{
@@ -614,6 +544,11 @@ do {
 
     } while (c!=13);
 
+  if (strlen(container)==0){
+    break;
+    return 0;
+  } else {
+
         // APÓS PRESSIONAR O ENTER, VERIFICA SE A DATA É VÁLIDA!!!
 
         char dia[1], mes[1];
@@ -645,14 +580,16 @@ do {
                 operador=30;
              } else
                 {
-                    gotoxy(10,16);
-                    printf("data inválida                      ");
+                    gotoxy(40,18);
+                    printf("DATA INVALIDA                      ");
                     operador=0;
                     idade=0;
                 }
-} while(operador==0);
 
-return idade;
+  }
+
+} while(operador==0);
+  return idade;
 
 }
 
@@ -665,23 +602,181 @@ else
     printf("%d Anos", idade);
 }
 
-void finalizaProgram(){
- system("cls");
-    gotoxy(30,14);
-    printf(ANSI_COLOR_RED);
-    tracoDecora(40,'*');
-    gotoxy(69,15);
-    printf("*");
-    gotoxy(30,15);
-    printf("*");
-    gotoxy(30,16);
-    tracoDecora(40,'*');
-    gotoxy(41,15);
-    printf(ANSI_COLOR_YELLOW "PROGRAMA  ENCERRADO!!!" ANSI_COLOR_RESET);
+void functionEmail(char container[30]){
+    int a=0;
+    char c;
+    int verifica=0;
+    fflush(stdin);
 
-    gotoxy(30,20);
-    exit(0);
+    do{
+        if (a!=31){
+           c=getch();
+            if (c==27){
+                menu();
+            }
+            if (isprint(c)){
+                container[a]=tolower(c);
+                a++;
+                printf("%c", tolower(c));
+            } else if (c==8&&a){
+                container[a]='/0';
+                a--;
+                printf("\b \b");
+            }
+        } else {
+          container[a]='\0';
+          a--;
+          printf("\b \b");
+        }
 
+   } while(c!=13);
 }
+
+void functionFormataData(char container[9]){
+    int a=0;
+    char c;
+
+  do {
+     if (a!=10){
+        c = getch();
+        if (c==27){
+            return 0;
+        }
+        if (isprint(c) && isdigit(c)){
+            container[a]=c;
+            a++;
+            printf("%c",c);
+         } else if (c==8&&a){
+           container[a]='\0';
+           a--;
+           printf("\b \b");
+        }
+        if (a==2 && c!=8 || a==5 && c!=8){
+            container[a] ='/';
+            a++;
+            printf("/");
+        } else if (c==8&&a){
+            container[a]='\0';
+            a--;
+           printf("\b \b");
+        }
+      }
+    }while (c!=13);
+return 0;
+}
+
+void functionComorbidades(char container[240]){
+int a=0;
+int linha=22;
+int coluna=10;
+char c;
+    fflush(stdin);
+do {
+    if (a!=241){
+        gotoxy(83,21);
+        printf(" %d/240 ",a);
+        gotoxy(coluna,linha);
+        c=getch();
+        if (c==27){
+            menu();
+        }
+        if (a==80 && c!=8&&a){
+            linha++;
+            coluna=9;
+        }
+
+         if (a==161 && c!=8&&a){
+            linha++;
+            coluna=9;
+        }
+
+        if (isprint(c)){
+            container[a]=c;
+            a++;
+            coluna++;
+            printf("%c",c);
+
+            } else if (c==8&&a){
+                if (a==81){
+                    linha=linha-1;
+                    coluna=10+a;  // ultima posição do cursor na primeira linha!
+                }
+                if (a==162){
+                    linha=linha-1;
+                    coluna=9+(a-80); // para saber em qual coluna devo mandar o cursor!
+                   }
+                gotoxy(coluna,linha);
+                container[a]='/0';
+                printf("\b \b");
+                a--;
+                coluna--;
+
+
+
+           }
+
+    } else {
+       container[a]='/0';
+       a--;
+       coluna--;
+       printf("\b \b");
+    }
+ } while(c!=13);
+}
+
+void functionOpGravar(char cep[8], int idade){
+char c;
+int a=0, op=0;
+fflush(stdin);
+do{
+    c=getch();
+    if (a!=2){
+        if (isprint(c)){
+            if (c=='s' || c== 'S'){
+                op=1;
+            }
+            if (c=='n' || c=='N'){
+                op=2;
+            }
+            a++;
+            printf("%c",c);
+        } else if (c==8&&a){
+            op=0;
+            a--;
+            printf("\b \b");
+            }
+    } else {
+        op=0;
+        a--;
+        printf("\b \b");
+    }
+
+}while(c!=13);
+
+    if (op==1){
+        gravarDados();
+        printf("DADOS GRAVADOS!!!");
+        system("PAUSE");
+        return 0;
+        }
+    if (op==2){
+     return 0;
+    } else {
+        functionOpGravar(cep, idade);
+    }
+
+ }
+
+  void gravarDados(char cep[8], int idade){
+    FILE *PTRARQ;
+    PTRARQ = fopen("GRiscoC19.txt", "a");
+    printf("Paciente Cadastrado em: %s \n", dataHora);
+    fprintf(PTRARQ, "CEP do Paciente: %s \n", cep);
+    fprintf(PTRARQ, "Idade do Paciente: %s \n",idade);
+    fprintf(PTRARQ, "***************************************************");
+    fclose(PTRARQ);
+    return 0;
+}
+
 
 #endif // FUNCTIONS_H_INCLUDED

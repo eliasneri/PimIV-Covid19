@@ -15,6 +15,7 @@ void main(){
     system("cls");
     validasenha();
     menu();
+    paciente();
     finalizaProgram();
     return 0;
 }
