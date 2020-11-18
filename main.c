@@ -12,9 +12,11 @@
 
 void main(){
     setlocale(LC_ALL, "Portuguese");
-
     system("cls");
+    validasenha();
     menu();
+    finalizaProgram();
+    return 0;
 }
 
 

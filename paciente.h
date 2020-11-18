@@ -26,7 +26,8 @@ void paciente(){
     system("cls");
     gotoxy(10,0);
     cabecalho();
-
+    gotoxy(40,1);
+    printf(ANSI_COLOR_RED "PRESSIONE ESC P/ VOLTAR!" ANSI_COLOR_RESET);
     gotoxy(37,6);
     printf(ANSI_COLOR_RED "Inclusão de Novo Registro!!" ANSI_COLOR_RESET);
 
@@ -43,7 +44,7 @@ void paciente(){
     // CAMPO NOME! PREENCHE E FORMATA!
     printf("Nome : "ANSI_COLOR_YELLOW);
     NPaciente.nome;
-//    functionFormataChar(NPaciente.nome,80);
+    functionFormataChar(NPaciente.nome,80);
 
     // CAMPO CPF
     fflush(stdin);

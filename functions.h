@@ -36,8 +36,8 @@ system("cls");
     printf(ANSI_COLOR_YELLOW "ID/SENHA INVÁLIDO!! ACESSO NEGADO!!" ANSI_COLOR_RESET);
 
     gotoxy(30,20);
-system("pause");
-validasenha();
+    system("pause");
+    validasenha();
 }
 
 void validasenha(){
@@ -72,6 +72,13 @@ system("cls");
            do{
               if (a!=11){
                  c=getch();
+                 if (c==27){
+                    fflush(stdin);
+                    gotoxy(30,20);
+                    exit(0);
+
+                 }
+
                  if (isprint(c)){
                     nome_user[a]=c;
                     a++;
@@ -131,6 +138,9 @@ system("cls");
          }
 
     } while (op==0);
+
+    finalizaProgram();
+    return 0;
 }
 
 void datahora(){
@@ -197,8 +207,13 @@ do {
 
               if (a!=2){
                  c=getch();
+
+                 if (c==27){
+                    buffer[a]='2';
+                    break;
+                 }
                  if (isprint(c) && isdigit(c)){
-                     buffer[a]=c;
+                     buffer[a]=tolower(c);
                      a++;
                      printf("%c",c);
                  } else if (c==8&&a){
@@ -221,26 +236,9 @@ do {
 
 
 } while (opcao !=2);
-
+ finalizaProgram();
     //ENCERRANDO O PROGRAMA!
-    system("cls");
-    gotoxy(30,14);
-    printf(ANSI_COLOR_RED);
-    tracoDecora(40,'*');
-    gotoxy(69,15);
-    printf("*");
-    gotoxy(30,15);
-    printf("*");
-    gotoxy(30,16);
-    tracoDecora(40,'*');
-    gotoxy(41,15);
-    printf(ANSI_COLOR_YELLOW "PROGRAMA  ENCERRADO!!!" ANSI_COLOR_RESET);
-
-    gotoxy(30,20);
-system("pause");
-
 }
-
 
 void Validanascimento(char dtNascimento[15]){
     struct tm *data_hora_atual;
@@ -313,6 +311,9 @@ int aux=0;
 do {
   if (a!=limite+1) {
     c=getch();
+    if (c==27){
+        menu();
+    }
     if (isprint(c)){
         if (a==0 && c==' '){
             a=0;
@@ -664,5 +665,23 @@ else
     printf("%d Anos", idade);
 }
 
+void finalizaProgram(){
+ system("cls");
+    gotoxy(30,14);
+    printf(ANSI_COLOR_RED);
+    tracoDecora(40,'*');
+    gotoxy(69,15);
+    printf("*");
+    gotoxy(30,15);
+    printf("*");
+    gotoxy(30,16);
+    tracoDecora(40,'*');
+    gotoxy(41,15);
+    printf(ANSI_COLOR_YELLOW "PROGRAMA  ENCERRADO!!!" ANSI_COLOR_RESET);
+
+    gotoxy(30,20);
+    exit(0);
+
+}
 
 #endif // FUNCTIONS_H_INCLUDED
