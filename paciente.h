@@ -24,6 +24,9 @@ struct Paciente NPaciente;
 
 void paciente(){
 
+    char *p;
+    p=&NPaciente;
+
     system("cls");
     gotoxy(10,0);
     cabecalho();
@@ -47,7 +50,7 @@ void paciente(){
     gotoxy(10,10);
     printf("Nome : "ANSI_COLOR_YELLOW);
 
- //   functionFormataChar(NPaciente.nome,80);
+    functionFormataChar(NPaciente.nome,80);
 
     // CAMPO CPF
     fflush(stdin);
@@ -127,12 +130,15 @@ void paciente(){
     printf(ANSI_COLOR_RESET "Gravar Registro? (s/n): " ANSI_COLOR_YELLOW);
 
     gotoxy(61,26);
-    functionOpGravar(NPaciente.cep, idade);
+    functionOpGravar(NPaciente, idade, p);
 //    functionNovoPaciente();
 
     gotoxy(37,27);
     printf(ANSI_COLOR_RED "Continuar Cadastrando (s/n): " ANSI_COLOR_YELLOW);
     printf("\n");
+    system("pause");
+    system("cls");
+    printf("%s", NPaciente.nome);
     system("pause");
     menu();
 }

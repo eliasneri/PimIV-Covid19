@@ -724,7 +724,7 @@ do {
  } while(c!=13);
 }
 
-void functionOpGravar(char cep[8], int idade){
+void functionOpGravar(struct Paciente *novo, int idade){
 char c;
 int a=0, op=0;
 fflush(stdin);
@@ -762,19 +762,22 @@ do{
     if (op==2){
      return 0;
     } else {
-        functionOpGravar(cep, idade);
+        functionOpGravar(novo, idade);
     }
 
  }
 
-  void gravarDados(char cep[8], int idade){
-    FILE *PTRARQ;
-    PTRARQ = fopen("GRiscoC19.txt", "a");
-    printf("Paciente Cadastrado em: %s \n", dataHora);
-    fprintf(PTRARQ, "CEP do Paciente: %s \n", cep);
-    fprintf(PTRARQ, "Idade do Paciente: %s \n",idade);
-    fprintf(PTRARQ, "***************************************************");
-    fclose(PTRARQ);
+  void gravarDados(char cep[8], int idade, char *p){
+    if (idade>=65){
+        FILE *ponteiro;
+        ponteiro = fopen("GRiscoC19.txt", "a");
+        fprintf(ponteiro,"Paciente Cadastrado em: %s \n", dataHora);
+        fprintf(ponteiro, "CEP do Paciente: %s \n", cep);
+        fprintf(ponteiro, "Idade do Paciente: %s \n",idade);
+        fprintf(ponteiro, "***************************************************\n\n");
+        fclose(ponteiro);
+    }
+
     return 0;
 }
 

@@ -1,0 +1,22 @@
+CEP do Paciente: (null) 
+Idade do Paciente:  
+***************************************************Paciente Cadastrado em: 18/11/2020 - 13:53 
+CEP do Paciente: (null) 
+Idade do Paciente:  
+***************************************************
+
+Paciente Cadastrado em: 18/11/2020 - 13:56 
+CEP do Paciente: (null) 
+Idade do Paciente:  
+***************************************************
+
+Paciente Cadastrado em: 18/11/2020 - 13:57 
+CEP do Paciente: (null) 
+Idade do Paciente:  
+***************************************************
+
+Paciente Cadastrado em: 18/11/2020 - 14:10 
+CEP do Paciente: (null) 
+Idade do Paciente:  
+***************************************************
+
