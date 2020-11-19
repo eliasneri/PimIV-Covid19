@@ -1,42 +1,8 @@
 #ifndef PACIENTE_H_INCLUDED
 #define PACIENTE_H_INCLUDED
 
-typedef struct Paciente{
-    char nome[80];
-    char cpf [13];
-    char Telefone[13];
-    char rua[80];
-    char numero[4];
-    char bairro[30];
-    char cidade[30];
-    char estado[2];
-    char cep [8];
-    char dtNasc[11];
-    char email[30];
-    char dtDiag [11];
-    char comorb [240];
-}Paciente;
-Paciente NPaciente;
-
-
-
-// ACRESCENTAR OPÇÃO PARA VOLTAR AO MENU!!! USANDO A TECLA ESC !!!
-
 void paciente(){
 
-    memset (NPaciente.nome,'\0',80);
-    memset (NPaciente.cpf, '\0',13);
-    memset (NPaciente.Telefone,'\0',13);
-    memset (NPaciente.rua,'\0',80);
-    memset (NPaciente.numero,'\0',4);
-    memset (NPaciente.bairro,'\0',30);
-    memset (NPaciente.cidade,'\0',30);
-    memset (NPaciente.estado,'\0',2);
-    memset (NPaciente.cep,'\0', 8);
-    memset (NPaciente.dtNasc,'\0',11);
-    memset (NPaciente.email,'\0',30);
-    memset (NPaciente.dtDiag,'\0',11);
-    memset (NPaciente.comorb,'\0',240);
 
     system("cls");
     gotoxy(10,0);
@@ -59,25 +25,31 @@ void paciente(){
     fflush(stdin);
     gotoxy(10,10);
     printf("Nome : "ANSI_COLOR_YELLOW);
+    memset (nome,'\0',80);
+    functionFormataChar(nome,80);
 
-    functionFormataChar(NPaciente.nome,80);
 
     // CAMPO CPF
     fflush(stdin);
     gotoxy(10,11);
     printf(ANSI_COLOR_RESET"CPF : "ANSI_COLOR_YELLOW);
-    functionCPF(NPaciente.cpf);
+    memset (cpf,'\0',13);
+    functionCPF(cpf);
+
 
     // CAMPO TELEFONE
     fflush(stdin);
     gotoxy(35,11);
     printf(ANSI_COLOR_RESET"Telefone: "ANSI_COLOR_YELLOW);
-    functionTelefone(NPaciente.Telefone);
+    memset (Telefone,'\0',13);
+    functionTelefone(Telefone);
+
 
     //E-MAIL:
     gotoxy(10,12);
     printf(ANSI_COLOR_RESET "E-mail: " ANSI_COLOR_YELLOW);
-    functionEmail(NPaciente.email);
+    memset (email,'\0',13);
+    functionEmail(email);
 
     // CAMPO ENDEREÇO
     fflush(stdin);
@@ -85,36 +57,51 @@ void paciente(){
     printf(ANSI_COLOR_RESET"Endereço:");
     gotoxy(10,15);
     printf(ANSI_COLOR_RESET"Rua: "ANSI_COLOR_YELLOW);
-    functionFormataChar(NPaciente.rua,80);
+    memset (rua,'\0',80);
+    functionFormataChar(rua,80);
 
     fflush(stdin);
     printf(ANSI_COLOR_RESET" | Número: "ANSI_COLOR_YELLOW);
-    functionFormataChar(NPaciente.numero,4);
+    memset (numero,'\0',4);
+    functionFormataNumero(numero);
+
+
 
     gotoxy(10,16);
     fflush(stdin);
     printf(ANSI_COLOR_RESET"Bairro: "ANSI_COLOR_YELLOW);
-    functionFormataChar(NPaciente.bairro,30);
+    memset (bairro,'\0',30);
+    functionFormataChar(bairro,30);
 
     gotoxy(10,17);
     fflush(stdin);
     printf(ANSI_COLOR_RESET"Cidade: "ANSI_COLOR_YELLOW);
-    functionFormataChar(NPaciente.cidade,30);
+    memset (cidade,'\0',30);
+    functionFormataChar(cidade,30);
 
     fflush(stdin);
     printf(ANSI_COLOR_RESET"        Estado: "ANSI_COLOR_YELLOW);
-    functionFormataCharEstado(NPaciente.estado);
+    memset (estado,'\0',2);
+    functionFormataCharEstado(estado);
+
+
+    teste[0]=estado[0];
+    teste[1]=estado[1];
+    teste[2]='\0';
 
     fflush(stdin);
     printf(ANSI_COLOR_RESET"    CEP: "ANSI_COLOR_YELLOW);
-    functionFormataCep(NPaciente.cep);
+    memset (cep,'\0',8);
+    functionFormataCep(cep);
+
 
     //CAMPO DATA DE NASCIMENTO, VALIDAÇÃO DA DATA, E VERIFICAÇÃO SE É GRUPO DE RISCO!
     fflush(stdin);
     gotoxy(10,18);
     printf(ANSI_COLOR_RESET"Data de Nascimento: "ANSI_COLOR_YELLOW);
+    memset (dtNasc,'\0',11);
     int idade=0;
-    idade=validaIdade(NPaciente.dtNasc);
+    idade=validaIdade(dtNasc);
     gotoxy(45,18);
     printf(ANSI_COLOR_RESET"Idade do Paciente: ");
     grupoRisco(idade);
@@ -123,14 +110,20 @@ void paciente(){
     //DATA DO DIAGNÓSTICO
     gotoxy(10,20);
     printf(ANSI_COLOR_RESET "Data do diagnóstico: " ANSI_COLOR_YELLOW);
-    functionFormataData(NPaciente.dtDiag);
+    memset (dtDiag,'\0',11);
+    functionFormataData(dtDiag);
 
     //COMORBIDADES
     fflush(stdin);
     gotoxy(10,21);
     printf(ANSI_COLOR_RESET "Comorbidades:" ANSI_COLOR_YELLOW);
     gotoxy(10,22);
-    functionComorbidades(NPaciente.comorb);
+    memset (comorb,'\0',240);
+    functionComorbidades(comorb);
+
+
+
+
 
     // FIM DO CADASTRO!!!
     fflush(stdin);
@@ -140,7 +133,7 @@ void paciente(){
     gotoxy(37,26);
     printf(ANSI_COLOR_RESET "Gravar Registro? (s/n): " ANSI_COLOR_YELLOW);
     gotoxy(61,26);
-    functionOpGravar(idade);
+    functionOpGravar(teste, idade);
 
     // GRAVAR NOVO REGISTRO ???
     fflush(stdin);
@@ -153,86 +146,6 @@ void paciente(){
 }
 //****************************************************************************************************************************
 // ********* FUNÇÕES INPLICITAS DO PACIENTE!!!
-
-void functionOpGravar(int idade){
-char c;
-int a=0, op=0;
-fflush(stdin);
-do{
-    c=getch();
-    if (a!=2){
-        if (isprint(c)){
-            if (c=='s' || c== 'S'){
-                op=1;
-            }
-            if (c=='n' || c=='N'){
-                op=2;
-            }
-            a++;
-            printf("%c",c);
-        } else if (c==8&&a){
-            op=0;
-            a--;
-            printf("\b \b");
-            }
-    } else {
-        op=0;
-        a--;
-        printf("\b \b");
-    }
-
-}while(c!=13);
-
-    if (op==1){
-        gravarDados(idade);
-        return 0;
-       }
-    if (op==2){
-     return 0;
-    } else {
-        functionOpGravar(idade);
-    }
-
- }
-
-  void gravarDados(int idade){
-       gotoxy(37,26);
-       printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
-       gotoxy(37,26);
-       printf(ANSI_COLOR_RED "SALVANDO DADOS EM ARQUIVO" ANSI_COLOR_YELLOW);
-       fflush(stdin);
-       FILE *ponteiro;
-        ponteiro = fopen("CadastroGeral.txt","a");
-        fprintf(ponteiro, "\n\n***************************************************\n");
-        fprintf(ponteiro, "Paciente Cadastrado em: %s \n", dataHora);
-        fprintf(ponteiro, "Cadastro gerado pelo ID: %s \n\n", nome_user);
-        fprintf(ponteiro, "Nome: %s\n",NPaciente.nome);
-        fprintf(ponteiro, "CPF: %s       -      Telefone: %s\n",NPaciente.cpf, NPaciente.Telefone);
-        fprintf(ponteiro, "E-mail: %s \n\n", NPaciente.email);
-        fprintf(ponteiro, "Endereço: \n");
-        fprintf(ponteiro, "Rua: %s - Nº(complemento) %s\n",NPaciente.rua, NPaciente.numero);
-        fprintf(ponteiro, "Bairro: %s - Cidade: %s - Estado: %s - CEP: %s", NPaciente.bairro, NPaciente.cidade, NPaciente.estado, NPaciente.cep);
-        fprintf(ponteiro, "\nData de Nascimento: %s      -      Idade do Paciente: %d\n\n", NPaciente.dtNasc, idade);
-        fprintf(ponteiro, "Data do Diagnóstico: %s \n", NPaciente.dtDiag);
-        fprintf(ponteiro, "Comorbidades: %s \n", NPaciente.comorb);
-        fprintf(ponteiro, "**********************************************************************\n");
-        fclose(ponteiro);
-        if (idade>=65){
-            ponteiro = fopen("GRiscoC19.txt", "a");
-            fprintf(ponteiro, "Paciente Cadastrado em: %s \n", dataHora);
-            fprintf(ponteiro, "Cadastro gerado pelo ID: %s \n", nome_user);
-            fprintf(ponteiro, "\nCEP do Paciente: %s", NPaciente.cep);
-            fprintf(ponteiro, "\nIdade do Paciente: %d \n",idade);
-            fprintf(ponteiro, "***************************************************\n\n");
-            fclose(ponteiro);
-        }
-
-       gotoxy(37,26);
-       printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
-
-    return 0;
-}
-
 
 
 #endif // PACIENTE_H_INCLUDED

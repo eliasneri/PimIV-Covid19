@@ -28,17 +28,18 @@
 
 1605749438 c:\users\elias\desktop\repositorio\pimiv\pim iv\repositório\pimiv\paciente.h
 
-1605712396 source:c:\users\impressão\desktop\r\pimiv\main.c
+1605791342 source:c:\users\impressão\desktop\r\pimiv\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<locale.h>
 	<time.h>
 	<windows.h>
+	<conio.h>
 	"functions.h"
 	"paciente.h"
 
-1605718302 c:\users\impressão\desktop\r\pimiv\functions.h
+1605798385 c:\users\impressão\desktop\r\pimiv\functions.h
 
-1605719438 c:\users\impressão\desktop\r\pimiv\paciente.h
+1605798375 c:\users\impressão\desktop\r\pimiv\paciente.h
 

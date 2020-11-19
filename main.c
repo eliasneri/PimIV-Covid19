@@ -4,6 +4,7 @@
 #include <locale.h>
 #include <time.h>
 #include <windows.h>
+#include <conio.h>
 #include "functions.h"
 #include "paciente.h"
 #define ANSI_COLOR_RED      "\x1b[31m"

@@ -4,9 +4,29 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #define ANSI_COLOR_YELLOW "\033[1;33m"
 
+// *****VARIAVEIS GLOBAIS!!!
 int op=0;
 char c,senha[50], nome_user[10];
 char dataHora[20];
+
+// Variaveis Cadastro Pacientes
+
+    char nome[80];
+    char cpf [13];
+    char Telefone[13];
+    char rua[80];
+    char numero[4];
+    char bairro[30];
+    char cidade[30];
+    char estado[2];
+    char cep [8];
+    char dtNasc[11];
+    char email[30];
+    char dtDiag [11];
+    char comorb [240];
+    char teste[2];
+
+
 
 void gotoxy(int x, int y) {
     COORD c = {x, y};
@@ -312,8 +332,41 @@ do {
     printf("\b \b");
   }
 } while(c!=13);
+int fecha= limite-a;
+container[fecha-1]='\0';
+return 0;
 
 
+}
+
+void functionFormataNumero(char buffer[4]){
+int a=0;
+char c;
+
+do {
+  if (a!=5) {
+    c=getch();
+    if (c==27){
+        menu();
+    }
+    if (isprint(c) && isdigit(c)){
+        buffer[a]=c;
+        a++;
+        printf("%c",c);
+        } else if (c==8&&a){
+           buffer[a]='\0';
+            a--;
+            printf("\b \b");
+        }
+
+  } else {
+    buffer[0]='\0';
+    a--;
+    printf("\b \b");
+    }
+} while(c!=13);
+
+return 0;
 }
 
 void functionCPF(char container[15]){
@@ -434,7 +487,7 @@ void functionFormataCharEstado(char container[1]){
 int a=0;
 char c;
     do{
-        if (a !=3){
+        if (a!=3){
         c=getch();
             if (c==27){
                 menu();
@@ -455,10 +508,11 @@ char c;
         }
     } while (c!=13);
 
+return 0;
 
 }
 
-void functionFormataCep(char container[8]){
+int functionFormataCep(char conta[8]){
 char c;
 int a=0;
 do {
@@ -468,39 +522,41 @@ do {
                 menu();
             }
             if (isprint(c) && isdigit(c)){
-                container[a]=c;
+                conta[a]=c;
                 a++;
                 printf("%c", c);
             } else if (c==8&&a){
-                container[a]='\0';
+                conta[a]='\0';
                 a--;
                 printf("\b \b");
             }
 
             if (a==5){
-                container[a]='-';
+                conta[a]='-';
                 a++;
                 printf("-");
             } else if (c==8&&a){
-                container[a]='\0';
+                conta[a]='\0';
                 a--;
                 printf("\b \b");
             }
     } else {
-        container[a]='\0';
+        conta[a]='\0';
         a--;
         printf("\b \b");
     }
 
 
-} while(c!=13);
-
-return 0;
+} while (c!=13);
+conta[9]='\0';
+conta[10]='\0';
+return conta;
 
 }
 
 int validaIdade(char container[9]){
-int operador =0, idade=0;
+
+int operador=0, idade=0;
 fflush(stdin);
 struct tm *data_hora_atual;
 time_t segundos;
@@ -580,7 +636,7 @@ do {
         int anoI= atoi(pegaano);
 
 
-            if ((diaI >1 && diaI <=31) && (mesI>=1 && mesI<=12) && (anoAtual-anoI <=120 && anoAtual-anoI !=0)){
+            if ((diaI >=1 && diaI <=31) && (mesI>=1 && mesI<=12) && (anoAtual-anoI <=120 && anoAtual-anoI !=0)){
                 idade=anoAtual-anoI;
                 operador=30;
              } else
@@ -660,7 +716,7 @@ void functionFormataData(char container[9]){
            printf("\b \b");
         }
         if (a==2 && c!=8 || a==5 && c!=8){
-            container[a] ='\0';
+            container[a] ='/';
             a++;
             printf("/");
         } else if (c==8&&a){
@@ -777,4 +833,111 @@ do{
 
 
 }
+
+ void gravarDados(char cep[8], int idade){
+
+       char buffer[8];
+
+buffer[0] =cep[0];
+buffer[1]= cep[1];
+buffer[2]= cep[2];
+buffer[3]= cep[3];
+buffer[4]= cep[4];
+buffer[5]= cep[5];
+buffer[6]= cep[6];
+buffer[7]= cep[7];
+buffer[8]= cep[8];
+buffer[9]= '\0';
+
+
+       gotoxy(37,26);
+       printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
+       gotoxy(37,26);
+       printf(ANSI_COLOR_RED "SALVANDO DADOS EM ARQUIVO" ANSI_COLOR_YELLOW);
+       fflush(stdin);
+       system("cls");
+       FILE *ponteiro;
+       ponteiro = fopen("CadastroGeral.txt","a");
+       fprintf(ponteiro, "CEP: %s", buffer);
+       printf("Cep: %s", cep);
+       fprintf(ponteiro, "\nIdade: %d", idade);
+       printf("\nIdade: %d", idade);
+       fclose(ponteiro);
+       system("pause");
+
+
+
+       gotoxy(37,26);
+       printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
+       return 0;
+
+}
+
+void functionOpGravar(char p[2], int idade){
+char c;
+int a=0, op=0;
+fflush(stdin);
+do{
+    c=getch();
+    if (a!=2){
+        if (isprint(c)){
+            if (c=='s' || c== 'S'){
+                op=1;
+            }
+            if (c=='n' || c=='N'){
+                op=2;
+            }
+            a++;
+            printf("%c",c);
+        } else if (c==8&&a){
+            op=0;
+            a--;
+            printf("\b \b");
+            }
+    } else {
+        op=0;
+        a--;
+        printf("\b \b");
+    }
+
+}while(c!=13);
+
+    if (op==1){
+        exibe(p, idade);
+        //gravarDados(NPaciente.cep, idade);
+        return 0;
+       }
+    if (op==2){
+     return 0;
+    } else {
+        functionOpGravar(p, idade);
+    }
+
+ }
+
+ void exibe(char teste[2], int idade){
+
+     system("cls");
+    printf("\n Nome: %s", nome);
+    printf("\n cpf: %s", cpf);
+    printf("\n telefone: %s", Telefone);
+    printf("\n rua: %s", rua);
+    printf("\n numero: %s", numero);
+    printf("\n bairro: %s", bairro);
+    printf("\n cidade: %s", cidade);
+    printf("\n estado: %s", teste);
+    printf("\n cep: %s", cep);
+    printf("\n data de nascimento: %s", dtNasc);
+    printf("\n idade: %d", idade);
+    printf("\n data diagnostico: %s", dtDiag);
+    printf("\n comorbidades: %s\n", comorb);
+
+    system("pause");
+
+    return 0;
+
+
+ }
+
+
 #endif // FUNCTIONS_H_INCLUDED
