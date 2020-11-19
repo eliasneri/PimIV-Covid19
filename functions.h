@@ -461,7 +461,6 @@ char c;
 void functionFormataCep(char container[8]){
 char c;
 int a=0;
-
 do {
     if (a!=10){
             c=getch();
@@ -496,10 +495,11 @@ do {
 
 } while(c!=13);
 
+return 0;
+
 }
 
 int validaIdade(char container[9]){
-
 int operador =0, idade=0;
 fflush(stdin);
 struct tm *data_hora_atual;
@@ -510,13 +510,17 @@ data_hora_atual = localtime(&segundos);
 int anoAtual = data_hora_atual->tm_year+1900;
 
 do {
+     gotoxy(45,18);
+     printf("                          ");
     gotoxy(10,18);
-    printf(ANSI_COLOR_RESET"Data de Nascimento: "ANSI_COLOR_YELLOW);
+    printf(ANSI_COLOR_RESET"Data de Nascimento:                                  "ANSI_COLOR_YELLOW);
+    gotoxy(30,18);
     char c;
     int a=0;
     do{
         if (a!=11){
             c=getch();
+
             if (isprint(c) && isdigit(c)){
                 container[a]=c;
                 a++;
@@ -544,7 +548,8 @@ do {
 
     } while (c!=13);
 
-  if (strlen(container)==0){
+  if (strlen(container)<=8){
+    memset (container,'\0',11);
     break;
     return 0;
   } else {
@@ -580,8 +585,12 @@ do {
                 operador=30;
              } else
                 {
-                    gotoxy(40,18);
-                    printf("DATA INVALIDA                      ");
+                    gotoxy(45,18);
+                    printf("DATA INVALIDA!!");
+                    gotoxy(20,26);
+                    system("pause");
+                     gotoxy(20,26);
+                     printf("                                                                  ");
                     operador=0;
                     idade=0;
                 }
@@ -635,13 +644,12 @@ void functionEmail(char container[30]){
 void functionFormataData(char container[9]){
     int a=0;
     char c;
-
   do {
-     if (a!=10){
+     if (a!=11){
         c = getch();
-        if (c==27){
-            return 0;
-        }
+            if (c==27){
+                return 0;
+            }
         if (isprint(c) && isdigit(c)){
             container[a]=c;
             a++;
@@ -652,7 +660,7 @@ void functionFormataData(char container[9]){
            printf("\b \b");
         }
         if (a==2 && c!=8 || a==5 && c!=8){
-            container[a] ='/';
+            container[a] ='\0';
             a++;
             printf("/");
         } else if (c==8&&a){
@@ -660,9 +668,13 @@ void functionFormataData(char container[9]){
             a--;
            printf("\b \b");
         }
+      } else {
+         container[a]='\0';
+         a--;
+         printf("\b \b");
       }
-    }while (c!=13);
-return 0;
+    } while (c!=13);
+
 }
 
 void functionComorbidades(char container[240]){
@@ -724,7 +736,7 @@ do {
  } while(c!=13);
 }
 
-void functionOpGravar(struct Paciente *novo, int idade){
+void functionNovoPaciente(){
 char c;
 int a=0, op=0;
 fflush(stdin);
@@ -754,32 +766,15 @@ do{
 }while(c!=13);
 
     if (op==1){
-        gravarDados();
-        printf("DADOS GRAVADOS!!!");
-        system("PAUSE");
+        paciente();
         return 0;
-        }
+       }
     if (op==2){
-     return 0;
+     menu();
     } else {
-        functionOpGravar(novo, idade);
+        functionNovoPaciente();
     }
 
- }
 
-  void gravarDados(char cep[8], int idade, char *p){
-    if (idade>=65){
-        FILE *ponteiro;
-        ponteiro = fopen("GRiscoC19.txt", "a");
-        fprintf(ponteiro,"Paciente Cadastrado em: %s \n", dataHora);
-        fprintf(ponteiro, "CEP do Paciente: %s \n", cep);
-        fprintf(ponteiro, "Idade do Paciente: %s \n",idade);
-        fprintf(ponteiro, "***************************************************\n\n");
-        fclose(ponteiro);
-    }
-
-    return 0;
 }
-
-
 #endif // FUNCTIONS_H_INCLUDED

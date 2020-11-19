@@ -13,13 +13,15 @@
 void main(){
     setlocale(LC_ALL, "Portuguese");
     system("cls");
-    validasenha();
-    menu();
+   // validasenha();
+   // menu();
     paciente();
     finalizaProgram();
     return 0;
 }
 
+
+// porque a data 01/01/ano e inválida?
 
 /* FUNÇÕES E VALIDAÇÕES DO SISTEMA ESTÃO ORGANIZADAS
 /  EM FUNCTIONS.H BEM COMO TODAS AS REGRAS DE NEGÓCIO DO SISTEMA!
