@@ -332,8 +332,7 @@ do {
     printf("\b \b");
   }
 } while(c!=13);
-int fecha= limite-a;
-container[fecha-1]='\0';
+
 return 0;
 
 
@@ -834,44 +833,6 @@ do{
 
 }
 
- void gravarDados(char cep[8], int idade){
-
-       char buffer[8];
-
-buffer[0] =cep[0];
-buffer[1]= cep[1];
-buffer[2]= cep[2];
-buffer[3]= cep[3];
-buffer[4]= cep[4];
-buffer[5]= cep[5];
-buffer[6]= cep[6];
-buffer[7]= cep[7];
-buffer[8]= cep[8];
-buffer[9]= '\0';
-
-
-       gotoxy(37,26);
-       printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
-       gotoxy(37,26);
-       printf(ANSI_COLOR_RED "SALVANDO DADOS EM ARQUIVO" ANSI_COLOR_YELLOW);
-       fflush(stdin);
-       system("cls");
-       FILE *ponteiro;
-       ponteiro = fopen("CadastroGeral.txt","a");
-       fprintf(ponteiro, "CEP: %s", buffer);
-       printf("Cep: %s", cep);
-       fprintf(ponteiro, "\nIdade: %d", idade);
-       printf("\nIdade: %d", idade);
-       fclose(ponteiro);
-       system("pause");
-
-
-
-       gotoxy(37,26);
-       printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
-       return 0;
-
-}
 
 void functionOpGravar(char p[2], int idade){
 char c;
@@ -917,21 +878,45 @@ do{
 
  void exibe(char teste[2], int idade){
 
-     system("cls");
-    printf("\n Nome: %s", nome);
-    printf("\n cpf: %s", cpf);
-    printf("\n telefone: %s", Telefone);
-    printf("\n rua: %s", rua);
-    printf("\n numero: %s", numero);
-    printf("\n bairro: %s", bairro);
-    printf("\n cidade: %s", cidade);
-    printf("\n estado: %s", teste);
-    printf("\n cep: %s", cep);
-    printf("\n data de nascimento: %s", dtNasc);
-    printf("\n idade: %d", idade);
-    printf("\n data diagnostico: %s", dtDiag);
-    printf("\n comorbidades: %s\n", comorb);
+    system("cls");
 
+    gotoxy(10,3);
+    printf(ANSI_COLOR_RESET "Paciente Cadastrado em: "); printf(ANSI_COLOR_YELLOW "%s", dataHora);
+    gotoxy(10,4);
+    printf(ANSI_COLOR_RESET "Cadastro gerado pelo ID: "); printf(ANSI_COLOR_YELLOW "%s", nome_user);
+
+    gotoxy(10,6);
+    printf(ANSI_COLOR_RESET "Nome: ");printf(ANSI_COLOR_YELLOW"%s", nome);
+    gotoxy(10,7);
+    printf(ANSI_COLOR_RESET "Cpf: ");printf(ANSI_COLOR_YELLOW "%s",cpf);
+    gotoxy(10,8);
+    printf(ANSI_COLOR_RESET "Telefone: "); printf(ANSI_COLOR_YELLOW "%s",Telefone);
+
+    gotoxy(10,11);
+    printf(ANSI_COLOR_RESET "Endereço:");
+    gotoxy(10,12);
+    printf(ANSI_COLOR_RESET"Rua: "); printf(ANSI_COLOR_YELLOW"%s", rua);
+    printf(ANSI_COLOR_RESET" - Número: "); printf(ANSI_COLOR_YELLOW "%s",numero);
+    printf(ANSI_COLOR_RESET" - Bairro: "); printf(ANSI_COLOR_YELLOW "%s",bairro);
+    gotoxy(10,13);
+    printf(ANSI_COLOR_RESET"Cidade: "); printf(ANSI_COLOR_YELLOW "%s",cidade);
+    printf(ANSI_COLOR_RESET" - Estado: "); printf(ANSI_COLOR_YELLOW "%s", teste);
+    printf(ANSI_COLOR_RESET" - Cep: "); printf(ANSI_COLOR_YELLOW "%s",cep);
+
+    gotoxy(10,15);
+    printf(ANSI_COLOR_RESET"Data de nascimento: "); printf(ANSI_COLOR_YELLOW "%s",dtNasc);
+    printf(ANSI_COLOR_RESET" - Idade:");
+    grupoRisco(idade);
+    gotoxy(10,17);
+    printf(ANSI_COLOR_RESET "Data diagnostico: "); printf(ANSI_COLOR_YELLOW "%s", dtDiag);
+    gotoxy(10,19);
+    printf(ANSI_COLOR_RESET "Comorbidades:");
+    gotoxy(10,20);
+    printf(ANSI_COLOR_YELLOW "%s", comorb);
+
+    gravarDados(teste, idade);
+    printf(ANSI_COLOR_RESET);
+    gotoxy(37,22);
     system("pause");
 
     return 0;
@@ -939,5 +924,29 @@ do{
 
  }
 
+ void gravarDados(char teste[2], int idade){
+
+gotoxy(37,29);
+printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
+gotoxy(37,26);
+printf(ANSI_COLOR_RED "SALVANDO DADOS EM ARQUIVO" ANSI_COLOR_YELLOW);
+fflush(stdin);
+system("cls");
+FILE *ponteiro;
+ponteiro = fopen("CadastroGeral.txt","a");
+fprintf(ponteiro, "CEP: %s", buffer);
+printf("Cep: %s", cep);
+fprintf(ponteiro, "\nIdade: %d", idade);
+printf("\nIdade: %d", idade);
+fclose(ponteiro);
+system("pause");
+
+
+
+gotoxy(37,29);
+printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
+return 0;
+
+}
 
 #endif // FUNCTIONS_H_INCLUDED

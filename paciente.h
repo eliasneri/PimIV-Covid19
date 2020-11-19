@@ -3,7 +3,23 @@
 
 void paciente(){
 
+    // LIMPANDO VARIAVEIS!!!
+    memset (nome,'\0',80);
+    memset (cpf, '\0',13);
+    memset (Telefone,'\0',13);
+    memset (rua,'\0',80);
+    memset (numero,'\0',4);
+    memset (bairro,'\0',30);
+    memset (cidade,'\0',30);
+    memset (estado,'\0',2);
+    memset (cep,'\0', 8);
+    memset (dtNasc,'\0',11);
+    memset (email,'\0',30);
+    memset (dtDiag,'\0',11);
+    memset (comorb,'\0',240);
 
+
+    // ACRESCENTANDO NO CABEÇALHO A FRASE: ESC PARA VOLTAR
     system("cls");
     gotoxy(10,0);
     cabecalho();
@@ -11,6 +27,7 @@ void paciente(){
     printf(ANSI_COLOR_RED "PRESSIONE ESC P/ VOLTAR!" ANSI_COLOR_RESET);
     gotoxy(37,6);
     printf(ANSI_COLOR_RED "Inclusão de Novo Registro!!" ANSI_COLOR_RESET);
+
 
     // FORMATAÇÃO DE DADOS!!!
     gotoxy(10,07);
@@ -121,10 +138,6 @@ void paciente(){
     memset (comorb,'\0',240);
     functionComorbidades(comorb);
 
-
-
-
-
     // FIM DO CADASTRO!!!
     fflush(stdin);
     gotoxy(10,25);
@@ -144,8 +157,6 @@ void paciente(){
     gotoxy(66,26);
     functionNovoPaciente();
 }
-//****************************************************************************************************************************
-// ********* FUNÇÕES INPLICITAS DO PACIENTE!!!
 
 
 #endif // PACIENTE_H_INCLUDED
