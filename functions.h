@@ -31,7 +31,7 @@ char dataHora[20];
 void gotoxy(int x, int y) {
     COORD c = {x, y};
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE), c);
-    //Y é a Linha!
+   return 0;
 }
 
 void tracoDecora(int quant, char c){
@@ -58,6 +58,7 @@ void finalizaProgram(){
     exit(0);
 
 }
+
 void erroid(){
 
 system("cls");
@@ -196,6 +197,7 @@ void datahora(){
           data_hora_atual->tm_hour,
           data_hora_atual->tm_min);
 }
+
 void cabecalho(){
 
 gotoxy(10,1);
@@ -277,6 +279,7 @@ do {
 } while (opcao !=2);
  finalizaProgram();
     //ENCERRANDO O PROGRAMA!
+    return 0;
 }
 
 void functionFormataChar(char container[80], int limite){
@@ -415,7 +418,7 @@ int a=0;
             }
 
     } while(c != 13);
-
+return 0;
 }
 
 void functionTelefone(char container[15]){
@@ -480,6 +483,7 @@ do{
         }
 
     } while(c!=13);
+    return 0;
  }
 
 void functionFormataCharEstado(char container[1]){
@@ -664,6 +668,8 @@ if (idade>=65) {
      }
 else
     printf("%d Anos", idade);
+
+return 0;
 }
 
 void functionEmail(char container[30]){
@@ -694,6 +700,8 @@ void functionEmail(char container[30]){
         }
 
    } while(c!=13);
+return 0;
+
 }
 
 void functionFormataData(char container[9]){
@@ -730,6 +738,7 @@ void functionFormataData(char container[9]){
       }
     } while (c!=13);
 
+    return 0;
 }
 
 void functionComorbidades(char container[240]){
@@ -789,6 +798,8 @@ do {
        printf("\b \b");
     }
  } while(c!=13);
+
+ return 0;
 }
 
 void functionNovoPaciente(){
@@ -830,7 +841,7 @@ do{
         functionNovoPaciente();
     }
 
-
+return 0;
 }
 
 
@@ -873,7 +884,7 @@ do{
     } else {
         functionOpGravar(p, idade);
     }
-
+return 0;
  }
 
  void exibe(char teste[2], int idade){
@@ -890,7 +901,8 @@ do{
     gotoxy(10,7);
     printf(ANSI_COLOR_RESET "Cpf: ");printf(ANSI_COLOR_YELLOW "%s",cpf);
     gotoxy(10,8);
-    printf(ANSI_COLOR_RESET "Telefone: "); printf(ANSI_COLOR_YELLOW "%s",Telefone);
+    printf(ANSI_COLOR_RESET "Email: "); printf(ANSI_COLOR_YELLOW "%s", email);
+    printf(ANSI_COLOR_RESET "   -   Telefone: "); printf(ANSI_COLOR_YELLOW "%s",Telefone);
 
     gotoxy(10,11);
     printf(ANSI_COLOR_RESET "Endereço:");
@@ -917,11 +929,7 @@ do{
     gravarDados(teste, idade);
     printf(ANSI_COLOR_RESET);
     gotoxy(37,22);
-    system("pause");
-
     return 0;
-
-
  }
 
  void gravarDados(char teste[2], int idade){
@@ -930,23 +938,48 @@ gotoxy(37,29);
 printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
 gotoxy(37,26);
 printf(ANSI_COLOR_RED "SALVANDO DADOS EM ARQUIVO" ANSI_COLOR_YELLOW);
-fflush(stdin);
-system("cls");
+
+ fflush(stdin);
+
 FILE *ponteiro;
-ponteiro = fopen("CadastroGeral.txt","a");
-fprintf(ponteiro, "CEP: %s", buffer);
-printf("Cep: %s", cep);
-fprintf(ponteiro, "\nIdade: %d", idade);
-printf("\nIdade: %d", idade);
+ponteiro = fopen("cadGeralC19.txt", "a");
+fprintf(ponteiro, "\n");
+fprintf(ponteiro, "*****************************************\n");
+fprintf(ponteiro, "Paciente Cadastrado em: %s", dataHora);
+fprintf(ponteiro, "\nCadastro gerado pelo ID: %s", nome_user);
+fprintf(ponteiro, "\n");
+fprintf(ponteiro, "Nome: %s", nome);
+fprintf(ponteiro, "\nCPF : %s", cpf);
+fprintf(ponteiro, "\nEmail: %s  -  Telefone: %s", email, Telefone);
+fprintf(ponteiro, "\n");
+fprintf(ponteiro, "Endereço:");
+fprintf(ponteiro, "\nRua: %s, Nº %s  -  Bairro: %s", rua, numero, bairro);
+fprintf(ponteiro, "\nCidade: %s  -  Estado: %s  - Cep: %s", cidade, teste, cep);
+fprintf(ponteiro, "\n");
+fprintf(ponteiro, "\nData de Nascimento: %s - Idade: %d Anos", dtNasc, idade);
+fprintf(ponteiro, "\n");
+fprintf(ponteiro, "\nData do Diagnóstico: %s", dtDiag);
+fprintf(ponteiro, "\nComorbidades:");
+fprintf(ponteiro, "\n%s",comorb);
+fprintf(ponteiro, "\n*****************************************\n");
 fclose(ponteiro);
-system("pause");
 
-
-
-gotoxy(37,29);
-printf(ANSI_COLOR_RESET "                        " ANSI_COLOR_YELLOW);
+    if (idade >=65){
+        ponteiro = fopen("GRiscoC19.txt", "a");
+        fprintf(ponteiro, "\n");
+        fprintf(ponteiro, "*****************************************\n");
+        fprintf(ponteiro, "Paciente Cadastrado em: %s", dataHora);
+        fprintf(ponteiro, "\nCadastro gerado pelo ID: %s", nome_user);
+        fprintf(ponteiro, "\n");
+        fprintf(ponteiro, "\nCEP do Paciente: %s", cep);
+        fprintf(ponteiro, "\nData de Nascimento: %s", dtNasc );
+        fprintf(ponteiro, " - Idade: %d Anos", idade);
+        fprintf(ponteiro, "\n*****************************************\n");
+        fclose(ponteiro);
+        }
+gotoxy(37,26);
+printf(ANSI_COLOR_RESET "                           " ANSI_COLOR_YELLOW);
 return 0;
-
 }
 
 #endif // FUNCTIONS_H_INCLUDED

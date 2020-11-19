@@ -11,18 +11,6 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 #define ANSI_COLOR_YELLOW "\033[1;33m"
 
-void main(){
-    setlocale(LC_ALL, "Portuguese");
-    system("cls");
-   // validasenha();
-   // menu();
-    paciente();
-    finalizaProgram();
-    return 0;
-}
-
-
-// porque a data 01/01/ano e inválida?
 
 /* FUNÇÕES E VALIDAÇÕES DO SISTEMA ESTÃO ORGANIZADAS
 /  EM FUNCTIONS.H BEM COMO TODAS AS REGRAS DE NEGÓCIO DO SISTEMA!
@@ -35,4 +23,18 @@ void main(){
 /  PROJETO INTEGRADO MULTIDISCIPLINAR - ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
 /  (PIM IV) - UNIP 2020 - ORIENTADOR:
 */
+
+
+
+
+void main(){
+    setlocale(LC_ALL, "Portuguese");
+    system("cls");
+    validasenha();
+    menu();
+    paciente();
+    finalizaProgram();
+    return 0;
+}
+
 
