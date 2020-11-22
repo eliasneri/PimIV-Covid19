@@ -55,6 +55,7 @@ void finalizaProgram(){
     printf(ANSI_COLOR_YELLOW "PROGRAMA  ENCERRADO!!!" ANSI_COLOR_RESET);
 
     gotoxy(30,20);
+    system("pause");
     exit(0);
 
 }
@@ -116,6 +117,9 @@ system("cls");
                     fflush(stdin);
                     finalizaProgram();
                  }
+                 if (c==9){
+                    break;
+                 }
 
                  if (isprint(c)){
                     nome_user[a]=c;
@@ -148,6 +152,9 @@ system("cls");
                     fflush(stdin);
                     finalizaProgram();
                 }
+                if (c==9){
+                    break;
+                }
                 if(isprint(c)){
                     senha[a]=c;
                     a++;
@@ -171,7 +178,10 @@ system("cls");
     char scorreta[]="covid19";
     char user[]="admin";
 
-    if (!strcmp(senha,scorreta) && (nome_user, user)) {
+    int retornoID = strcmp(nome_user, user);
+    int retornoS = strcmp(senha, scorreta);
+
+    if (retornoID==0 && retornoS==0) {
         op=1;
         break;
                 }

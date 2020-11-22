@@ -3,7 +3,7 @@
 
 void paciente(){
 
-    // LIMPANDO VARIAVEIS!!!
+    // LIMPANDO VARIAVEIS!!
     memset (nome,'\0',80);
     memset (cpf, '\0',13);
     memset (Telefone,'\0',13);
