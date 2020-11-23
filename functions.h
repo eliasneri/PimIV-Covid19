@@ -303,6 +303,9 @@ do {
     if (c==27){
         menu();
     }
+     if (c==9){
+         break;
+     }
     if (isprint(c)){
         if (a==0 && c==' '){
             a=0;
@@ -361,6 +364,9 @@ do {
     if (c==27){
         menu();
     }
+     if (c==9){
+        break;
+     }
     if (isprint(c) && isdigit(c)){
         buffer[a]=c;
         a++;
@@ -390,6 +396,9 @@ int a=0;
         if (a!=14){
             if (c==27){
                 menu();
+            }
+            if (c==9){
+                break;
             }
             if (isprint(c) && isdigit(c)){
                 container[a]=c;
@@ -440,6 +449,9 @@ do{
         if (a!=14){
             if (c==27){
                 menu();
+            }
+            if (c==9){
+                break;
             }
             if (a==0){
                 container[a]='(';
@@ -505,6 +517,9 @@ char c;
             if (c==27){
                 menu();
             }
+            if (c==9){
+                break;
+            }
             if (isprint(c)){
                 container[a]=toupper(c);
                 a++;
@@ -533,6 +548,9 @@ do {
             c=getch();
             if (c==27){
                 menu();
+            }
+            if (c==9){
+                break;
             }
             if (isprint(c) && isdigit(c)){
                 conta[a]=c;
@@ -589,6 +607,12 @@ do {
     do{
         if (a!=11){
             c=getch();
+            if (c==27){
+                return 0;
+            }
+            if (c==9){
+                break;
+            }
 
             if (isprint(c) && isdigit(c)){
                 container[a]=c;
@@ -694,6 +718,9 @@ void functionEmail(char container[30]){
             if (c==27){
                 menu();
             }
+            if (c==9){
+                break;
+            }
             if (isprint(c)){
                 container[a]=tolower(c);
                 a++;
@@ -722,6 +749,9 @@ void functionFormataData(char container[9]){
         c = getch();
             if (c==27){
                 return 0;
+            }
+            if (c==9){
+                break;
             }
         if (isprint(c) && isdigit(c)){
             container[a]=c;
@@ -765,6 +795,9 @@ do {
         c=getch();
         if (c==27){
             menu();
+        }
+        if (c==9){
+            break;
         }
         if (a==80 && c!=8&&a){
             linha++;
@@ -819,6 +852,13 @@ fflush(stdin);
 do{
     c=getch();
     if (a!=2){
+        if (c==27){
+            menu();
+        }
+        if (c==9){
+            op=0;
+            break;
+        }
         if (isprint(c)){
             if (c=='s' || c== 'S'){
                 op=1;
@@ -843,7 +883,7 @@ do{
 
     if (op==1){
         paciente();
-        return 0;
+
        }
     if (op==2){
      menu();
@@ -862,6 +902,13 @@ fflush(stdin);
 do{
     c=getch();
     if (a!=2){
+        if (c==27){
+            menu();
+        }
+        if (c==9){
+            op=0;
+            break;
+        }
         if (isprint(c)){
             if (c=='s' || c== 'S'){
                 op=1;
@@ -886,8 +933,8 @@ do{
 
     if (op==1){
         exibe(p, idade);
-        //gravarDados(NPaciente.cep, idade);
         return 0;
+
        }
     if (op==2){
      return 0;
